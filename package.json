@@ -11,14 +11,14 @@
     "dark-web"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/nordsecurity/n8n-nodes-nordstellar",
+  "homepage": "https://github.com/NordStellar/n8n-nodes-nordstellar",
   "author": {
     "name": "NordSecurity",
     "email": "support@nordsecurity.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nordsecurity/n8n-nodes-nordstellar.git"
+    "url": "https://github.com/NordStellar/n8n-nodes-nordstellar.git"
   },
   "engines": {
     "node": ">=22.22"
