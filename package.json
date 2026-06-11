@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-nordstellar",
+  "name": "@nordstellar/n8n-nodes-nordstellar",
   "version": "0.1.0",
   "description": "n8n community node for the NordStellar Integration API (v3)",
   "keywords": [
