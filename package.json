@@ -13,8 +13,8 @@
   "license": "MIT",
   "homepage": "https://github.com/NordStellar/n8n-nodes-nordstellar",
   "author": {
-    "name": "NordSecurity",
-    "email": "support@nordsecurity.com"
+    "name": "NordStellar",
+    "email": "support@nordstellar.com"
   },
   "repository": {
     "type": "git",
