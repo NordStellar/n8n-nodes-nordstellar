@@ -31,7 +31,7 @@ export class NordStellar implements INodeType {
 		properties: [
 			{
 				displayName:
-					'See the <a href="https://docs.nordstellar.com/platform/integrations-api/swagger" target="_blank">NordStellar Integration API reference</a> for response field details.',
+					'See the <a href="https://docs.nordstellar.com/platform/integrations-api" target="_blank">NordStellar Integration API docs</a> for credential setup and the API reference.',
 				name: 'docsNotice',
 				type: 'notice',
 				default: '',

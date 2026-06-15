@@ -13,6 +13,9 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Gates publishing behind the "npm" environment (configure required reviewers
+    # and scope the NPM_TOKEN secret to it in repo Settings → Environments).
+    environment: npm
     steps:
       - name: Checkout
         uses: actions/checkout@v6
