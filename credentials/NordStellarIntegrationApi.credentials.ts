@@ -48,7 +48,7 @@ export class NordStellarIntegrationApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials.baseUrl}}/v2',
+			baseURL: '={{$credentials.baseUrl}}/v3',
 			url: '/projects',
 			method: 'GET',
 			qs: {
