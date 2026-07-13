@@ -16,7 +16,7 @@ In n8n: **Settings → Community Nodes → Install**, then enter `@nordstellar/n
 
 The node authenticates with a machine-to-machine **JWT access token** issued by the NordStellar Platform. Create a credential of type **NordStellar Integration API** and provide:
 
-- **Base URL** – base URL of the Integration API (default `https://platform-integration-api.nordstellar.com`).
+- **Base URL** – base URL of the Integration API (default `https://platform-integration-api.nordstellar.com`). Must be an HTTPS URL on a `nordstellar.com` domain.
 - **Access Token** – the JWT generated via the IAM `POST /iam/v1/organizations/{id}/clients/{client-id}/tokens` endpoint. It is sent as `Authorization: Bearer <token>`.
 
 ## Operations

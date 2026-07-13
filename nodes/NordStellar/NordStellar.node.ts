@@ -1,5 +1,7 @@
 import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 
+import { EVENT_TYPE_OPTIONS, validateEventType, validateUuidParameters } from './GenericFunctions';
+
 export class NordStellar implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'NordStellar',
@@ -132,6 +134,9 @@ export class NordStellar implements INodeType {
 								method: 'GET',
 								url: '=/events/{{$parameter["eventType"]}}/{{$parameter["eventId"]}}',
 							},
+							send: {
+								preSend: [validateEventType, validateUuidParameters('eventId')],
+							},
 						},
 					},
 					{
@@ -143,6 +148,9 @@ export class NordStellar implements INodeType {
 							request: {
 								method: 'GET',
 								url: '=/projects/{{$parameter["projectId"]}}/events',
+							},
+							send: {
+								preSend: [validateUuidParameters('projectId')],
 							},
 							operations: {
 								pagination: {
@@ -180,6 +188,9 @@ export class NordStellar implements INodeType {
 									isResolved: '={{$parameter["isResolved"]}}',
 								},
 							},
+							send: {
+								preSend: [validateUuidParameters('eventId')],
+							},
 						},
 					},
 				],
@@ -195,6 +206,7 @@ export class NordStellar implements INodeType {
 				type: 'string',
 				default: '',
 				required: true,
+				placeholder: 'e.g. 123e4567-e89b-12d3-a456-426614174000',
 				displayOptions: {
 					show: {
 						resource: ['event'],
@@ -215,29 +227,7 @@ export class NordStellar implements INodeType {
 						operation: ['get'],
 					},
 				},
-				options: [
-					{
-						name: 'Attack Surface DNS Vulnerability',
-						value: 'attack-surface-dns-vulnerabilities',
-					},
-					{
-						name: 'Attack Surface Network Service Vulnerability',
-						value: 'attack-surface-network-service-vulnerabilities',
-					},
-					{
-						name: 'Attack Surface Web Application Vulnerability',
-						value: 'attack-surface-web-application-vulnerabilities',
-					},
-					{ name: 'Combo List', value: 'combo-lists' },
-					{ name: 'Consumer Credential', value: 'consumer-credentials' },
-					{ name: 'Dark Web Forum Post', value: 'dark-web-forum-posts' },
-					{ name: 'Dark Web Marketplace Post', value: 'dark-web-marketplace-posts' },
-					{ name: 'Dark Web Ransomware Post', value: 'dark-web-ransomware-posts' },
-					{ name: 'Dark Web Telegram Post', value: 'dark-web-telegram-posts' },
-					{ name: 'Data Breach', value: 'data-breaches' },
-					{ name: 'Domain Permutation', value: 'domain-permutations' },
-					{ name: 'Malware Infection', value: 'malware-infections' },
-				],
+				options: EVENT_TYPE_OPTIONS,
 				description: 'Type of event to retrieve',
 			},
 			{
@@ -246,6 +236,7 @@ export class NordStellar implements INodeType {
 				type: 'string',
 				default: '',
 				required: true,
+				placeholder: 'e.g. 123e4567-e89b-12d3-a456-426614174000',
 				displayOptions: {
 					show: {
 						resource: ['event'],
