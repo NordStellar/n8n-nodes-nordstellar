@@ -10,7 +10,7 @@ NordStellar is a threat exposure management platform. This node wraps the public
 
 Follow the [community nodes installation guide](https://docs.n8n.io/integrations/community-nodes/installation/).
 
-In n8n: **Settings → Community Nodes → Install**, then enter `@nordstellar/n8n-nodes-nordstellar`.
+In n8n: **Settings → Community Nodes → Install**, then enter `n8n-nodes-nordstellar`.
 
 ## Credentials
 
