@@ -10,7 +10,7 @@ export class NordStellar implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Interact with the NordStellar Integration API (v3)',
+		description: 'Interact with the NordStellar Integration API',
 		defaults: {
 			name: 'NordStellar',
 		},

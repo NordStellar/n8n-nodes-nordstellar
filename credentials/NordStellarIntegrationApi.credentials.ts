@@ -65,7 +65,7 @@ export class NordStellarIntegrationApi implements ICredentialType {
 			default: '',
 			required: true,
 			description:
-				'Machine-to-machine JWT generated via the IAM API. Sent as a Bearer token in the Authorization header.',
+				'Access token generated in the NordStellar platform. Sent as a Bearer token in the Authorization header.',
 		},
 		// Declared explicitly (instead of letting n8n auto-inject them with an "All"
 		// default) so the credential is locked to nordstellar.com even when used in a
