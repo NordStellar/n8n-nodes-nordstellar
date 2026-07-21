@@ -13,8 +13,9 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    # Gates publishing behind the "npm" environment (configure required reviewers
-    # and scope the NPM_TOKEN secret to it in repo Settings → Environments).
+    # Gates publishing behind the "npm" environment (configure required reviewers in
+    # repo Settings → Environments). If the npm trusted publisher config specifies an
+    # environment, it must be this one.
     environment: npm
     steps:
       - name: Checkout
@@ -26,6 +27,10 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
 
+      # OIDC trusted publishing requires npm >= 11.5.1; Node 22 bundles npm 10.x.
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: npm ci
 
@@ -33,9 +38,8 @@ jobs:
       # build, then `npm publish` with provenance (NPM_CONFIG_PROVENANCE=true) and the
       # CLI's required RELEASE_MODE flag. A raw `npm publish` is intentionally blocked
       # by the CLI's prepublishOnly guard, so it must go through the release command.
-      # Authenticates with an npm automation token (NPM_TOKEN secret); id-token: write
-      # above enables the provenance attestation.
+      # Auth is via OIDC trusted publishing (configured on npmjs.com for this repo +
+      # workflow file) — no npm token; id-token: write above enables the OIDC exchange
+      # and the provenance attestation.
       - name: Release (lint, build, publish with provenance)
         run: npm run release
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
