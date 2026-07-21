@@ -28,7 +28,13 @@ each other.
 Publishing to npm runs automatically via GitHub Actions (`.github/workflows/publish.yml`) when a
 GitHub Release is published. The workflow runs `npm run release` (`n8n-node release`), which in CI
 lints, builds, and publishes with [provenance](https://docs.npmjs.com/generating-provenance-statements),
-as required for verified community nodes. Set the `NPM_TOKEN` repository secret first.
+as required for verified community nodes.
+
+Authentication uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC) —
+no npm token or repository secret is needed. The trusted publisher is configured on npmjs.com
+(package Settings → Trusted Publisher) and must match this repository, the workflow filename
+`publish.yml`, and the `npm` environment. The publish job runs in the `npm` GitHub environment,
+so required reviewers configured there gate each release.
 
 Release flow:
 
