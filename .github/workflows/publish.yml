@@ -29,17 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
-        run: npm run build
-
-      # Published via GitHub Actions with a provenance statement (required for n8n
-      # verification from 2026-05-01). Authenticates with an npm automation token
-      # (NPM_TOKEN secret); id-token: write above enables the provenance attestation.
-      # Optional later: switch to OIDC trusted publishing to drop the token.
-      - name: Publish
-        run: npm publish --provenance --access public
+      # `npm run release` (n8n-node release) detects GitHub Actions and runs lint +
+      # build, then `npm publish` with provenance (NPM_CONFIG_PROVENANCE=true) and the
+      # CLI's required RELEASE_MODE flag. A raw `npm publish` is intentionally blocked
+      # by the CLI's prepublishOnly guard, so it must go through the release command.
+      # Authenticates with an npm automation token (NPM_TOKEN secret); id-token: write
+      # above enables the provenance attestation.
+      - name: Release (lint, build, publish with provenance)
+        run: npm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
